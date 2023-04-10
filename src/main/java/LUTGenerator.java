@@ -1,15 +1,23 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class LUTGenerator {
 
-    private static final String redCurveName   = "dscs315R1";
-    private static final String greenCurveName = "dscs315G1";
-    private static final String blueCurveName  = "dscs315B1";
+    private static final String redCurveName   = "agfachrome-rsx2-200CDRed";
+    private static final String greenCurveName = "agfachrome-rsx2-200CDGreen";
+    private static final String blueCurveName  = "agfachrome-rsx2-200CDBlue";
 
-    private static final String curveName = redCurveName.replace("R", "");
+    public static String intersectString(String s1, String s2) {
+        StringBuilder result = new StringBuilder();
+
+        for(int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) != s2.charAt(i)) break;
+            result.append(s1.charAt(i));
+        }
+        return result.toString();
+    }
+
+    private static final String curveName = intersectString(intersectString(redCurveName, greenCurveName), blueCurveName);
 
     private static final File curveDataFile = new File("src/main/java/input/dorfCurves.txt");
 

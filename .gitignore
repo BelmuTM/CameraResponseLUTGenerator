@@ -52,5 +52,3 @@ bin/
 /gradlew
 /gradlew.bat
 /settings.gradle
-/src/main/java/output/cameraIrradianceLUT.dat
-/src/main/java/output/cameraIntensityLUT.dat
