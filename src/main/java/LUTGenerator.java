@@ -3,9 +3,9 @@ import java.util.*;
 
 public class LUTGenerator {
 
-    private static final String redCurveName   = "agfachrome-rsx2-200CDRed";
-    private static final String greenCurveName = "agfachrome-rsx2-200CDGreen";
-    private static final String blueCurveName  = "agfachrome-rsx2-200CDBlue";
+    private static final String redCurveName   = "dscs315R1";
+    private static final String greenCurveName = "dscs315G1";
+    private static final String blueCurveName  = "dscs315B1";
 
     public static String intersectString(String s1, String s2) {
         StringBuilder result = new StringBuilder();
