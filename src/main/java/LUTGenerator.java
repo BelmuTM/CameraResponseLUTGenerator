@@ -3,9 +3,9 @@ import java.util.*;
 
 public class LUTGenerator {
 
-    private static final String redCurveName   = "agfachrome-ctprecisa-100CDRed";
-    private static final String greenCurveName = "agfachrome-ctprecisa-100CDGreen";
-    private static final String blueCurveName  = "agfachrome-ctprecisa-100CDBlue";
+    private static final String redCurveName   = "Ektachrome-E100SCDRed";
+    private static final String greenCurveName = "Ektachrome-E100SCDGreen";
+    private static final String blueCurveName  = "Ektachrome-E100SCDBlue";
 
     public static String intersectString(String s1, String s2) {
         StringBuilder result = new StringBuilder();
@@ -21,8 +21,7 @@ public class LUTGenerator {
 
     private static final File curveDataFile = new File("src/main/java/input/dorfCurves.txt");
 
-    private static final String irradianceLUTPath = "src/main/java/output/cameraIrradiance" + curveName + ".dat";
-    private static final String intensityLUTPath  = "src/main/java/output/cameraIntensity"  + curveName + ".dat";
+    private static final String lutPath = "src/main/java/output/" + curveName + ".dat";
 
     public static float[] stringToFloatArray(String string) {
         String[] elements = string.split("   ");
@@ -71,21 +70,17 @@ public class LUTGenerator {
         }
 
         try {
-            FileOutputStream irradianceOutputStream     = new FileOutputStream(irradianceLUTPath);
-            DataOutputStream irradianceDataOutputStream = new DataOutputStream(irradianceOutputStream);
+            FileOutputStream fileOutputStream = new FileOutputStream(lutPath);
+            DataOutputStream dataOutputStream = new DataOutputStream(fileOutputStream);
 
             for (Float data : irradiance) {
-                irradianceDataOutputStream.writeByte(Float.floatToIntBits(data));
+                dataOutputStream.writeByte(Float.floatToIntBits(data));
             }
-            irradianceDataOutputStream.close();
-
-            FileOutputStream intensityOutputStream     = new FileOutputStream(intensityLUTPath);
-            DataOutputStream intensityDataOutputStream = new DataOutputStream(intensityOutputStream);
 
             for (Float data : intensity) {
-                intensityDataOutputStream.writeByte(Float.floatToIntBits(data));
+                dataOutputStream.writeByte(Float.floatToIntBits(data));
             }
-            intensityDataOutputStream.close();
+            dataOutputStream.close();
         } catch(IOException ioe) { ioe.printStackTrace(); }
 
         System.out.println("[SUCCESS] Task executed in " + (System.currentTimeMillis() - start) + "ms.");
